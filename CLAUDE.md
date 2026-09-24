@@ -27,8 +27,9 @@
 
 ## Технические договорённости
 
-- **Только стандартная библиотека Go.** Внешние зависимости не добавлять. Библиотеку
-  `libs/logger` в этот проект не подключать — это пробовали и откатили.
+- **Зависимости** — через вендоринг: после изменения `go.mod` запускать `make vendor` и коммитить
+  `vendor/` (сборка идёт только из него). Библиотеку `libs/logger` в этот проект не
+  подключать — это пробовали и откатили.
 - Данные — в stdout, диагностика и ошибки — в stderr, чтобы `-format json` оставался валидным
   и пайплайнился в `jq`.
 - Источники: `ALERTS` в VictoriaMetrics (история vmalert) и `/api/v2/silences` Alertmanager.
@@ -59,7 +60,7 @@
 сборка — `Makefile` (не `justfile`), версия — `versions.txt`, релиз — `.github/workflows/release.yml`.
 
 - `main.go` — диспетчер подкоманд, общие флаги, парсинг дат.
-- `buildinfo.go` — `--version` / `--origin` / `--buildinfo` (на stdlib, без `install-libs`).
+- `buildinfo.go` — `--version` / `--origin` / `--buildinfo` (через `github.com/dimkarp93/install-libs/buildinfo`).
 - `alerts.go` / `episode.go` / `render.go` / `export.go` — подкоманда `alerts`.
 - `mutes.go` — подкоманда `mutes` целиком.
 - `source.go` — HTTP-клиенты VictoriaMetrics и Alertmanager, матчинг сайленсов.

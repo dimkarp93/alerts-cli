@@ -14,7 +14,7 @@ import (
 const dayLayout = "2006-01-02"
 
 func main() {
-	if handleBuildFlags(os.Stdout, os.Args[1:]) {
+	if build().Handle(os.Args[1:]) {
 		return
 	}
 	if len(os.Args) < 2 {
