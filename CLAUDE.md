@@ -55,7 +55,11 @@
 
 ## Файлы
 
+Весь код — `package main` в `cmd/alerts-cli/` (конвенции `~/tools/install/CONVENTIONS.md`),
+сборка — `justfile`, версия — `versions.txt`, релиз — `.github/workflows/release.yml`.
+
 - `main.go` — диспетчер подкоманд, общие флаги, парсинг дат.
+- `buildinfo.go` — `--version` / `--origin` / `--buildinfo` (на stdlib, без `install-libs`).
 - `alerts.go` / `episode.go` / `render.go` / `export.go` — подкоманда `alerts`.
 - `mutes.go` — подкоманда `mutes` целиком.
 - `source.go` — HTTP-клиенты VictoriaMetrics и Alertmanager, матчинг сайленсов.

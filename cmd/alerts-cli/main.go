@@ -14,6 +14,9 @@ import (
 const dayLayout = "2006-01-02"
 
 func main() {
+	if handleBuildFlags(os.Stdout, os.Args[1:]) {
+		return
+	}
 	if len(os.Args) < 2 {
 		usage()
 		os.Exit(2)
@@ -47,6 +50,9 @@ Usage:
   alerts-cli mutes  [flags]   включения мьютов (сайленсы Alertmanager)
 
   alerts-cli <command> -h     флаги подкоманды
+  alerts-cli --version        версия (-v)
+  alerts-cli --origin         репозиторий, из которого собран бинарь
+  alerts-cli --buildinfo      полная информация о сборке
 
 Examples:
   alerts-cli alerts -date yesterday -format stats

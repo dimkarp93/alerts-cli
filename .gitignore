@@ -1,1 +1,6 @@
-alerts-cli
+/alerts-cli
+/bin/
+/dist/
+/go.work
+/go.work.sum
+coverage.out

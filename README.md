@@ -10,11 +10,18 @@ alerts-cli mutes  [flags]   включения мьютов (сайленсы Al
 ## Сборка
 
 ```bash
-cd ~/tools/alerts-cli && make
+cd ~/tools/alerts-cli && just build
 ```
 
-Ещё цели: `make check` (gofmt + go vet), `make install` (в `$PREFIX/bin`, по умолчанию
-`~/.local/bin`), `make clean`.
+Ещё рецепты: `just check` (gofmt + go vet + go test), `just install` (в `~/.local/bin`),
+`just clean`. Код лежит в `cmd/alerts-cli/`, версия — в `versions.txt`.
+
+Версии и релизы: `just bump-patch` / `bump-minor` / `bump-major` поднимает версию, коммитит
+`versions.txt`, ставит тег `vX.Y.Z` и пушит; тег запускает `.github/workflows/release.yml`,
+который собирает архивы под linux/darwin × amd64/arm64 и `SHA256SUMS`. Установка релиза —
+`github_install.sh dimkarp93/alerts-cli`, из рабочей копии — `local_install.sh .`.
+
+`alerts-cli --version`, `--origin`, `--buildinfo` печатают версию и происхождение сборки.
 
 Зависимостей нет — только стандартная библиотека Go.
 
