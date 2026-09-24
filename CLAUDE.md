@@ -56,7 +56,7 @@
 ## Файлы
 
 Весь код — `package main` в `cmd/alerts-cli/` (конвенции `~/tools/install/CONVENTIONS.md`),
-сборка — `justfile`, версия — `versions.txt`, релиз — `.github/workflows/release.yml`.
+сборка — `Makefile` (не `justfile`), версия — `versions.txt`, релиз — `.github/workflows/release.yml`.
 
 - `main.go` — диспетчер подкоманд, общие флаги, парсинг дат.
 - `buildinfo.go` — `--version` / `--origin` / `--buildinfo` (на stdlib, без `install-libs`).
