@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+
+	"github.com/dimkarp93/install-libs/xdgpath"
 )
 
 type config struct {
@@ -13,11 +15,13 @@ type config struct {
 }
 
 func configPath() (string, error) {
+	primary := filepath.Join(xdgpath.ConfigDir("alerts-cli"), "config.json")
 	home, err := os.UserHomeDir()
 	if err != nil {
-		return "", fmt.Errorf("определение домашней директории: %w", err)
+		return primary, nil
 	}
-	return filepath.Join(home, ".config", "alerts-cli", "config.json"), nil
+	legacy := filepath.Join(home, ".config", "alerts-cli", "config.json")
+	return xdgpath.WithLegacy(primary, legacy), nil
 }
 
 func loadConfig() (config, error) {
