@@ -36,7 +36,7 @@ func main() {
 		err = runAlerts(args)
 	case "mutes":
 		err = runMutes(args)
-	case "help", "-h", "--help":
+	case "help", "-h", "--help", "-help":
 		usage()
 		return
 	default:
