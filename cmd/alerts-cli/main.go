@@ -17,6 +17,9 @@ func main() {
 	if build().Handle(os.Args[1:]) {
 		return
 	}
+	if code, ok := completionSpec.Handle(os.Stdout, os.Stderr, os.Args[1:]); ok {
+		os.Exit(code)
+	}
 	if len(os.Args) < 2 {
 		usage()
 		os.Exit(2)
@@ -50,6 +53,8 @@ Usage:
   alerts-cli mutes  [flags]   включения мьютов (сайленсы Alertmanager)
 
   alerts-cli <command> -h     флаги подкоманды
+  alerts-cli completion bash|zsh
+  alerts-cli install-completions|uninstall-completions [bash|zsh|all]
   alerts-cli --version        версия (-v)
   alerts-cli --origin         репозиторий, из которого собран бинарь
   alerts-cli --buildinfo      полная информация о сборке
