@@ -42,3 +42,12 @@ func TestConfigPathFallsBackToTheLegacyFile(t *testing.T) {
 		t.Fatalf("legacy exists: got %q, %v", got, err)
 	}
 }
+
+func TestPathEntries(t *testing.T) {
+	t.Setenv("HOME", "/h")
+	t.Setenv("XDG_CONFIG_HOME", "/x")
+	entries := pathEntries()
+	if len(entries) != 1 || entries[0].Name != "config" || entries[0].Path != "/x/alerts-cli/config.json" {
+		t.Fatalf("got %+v", entries)
+	}
+}

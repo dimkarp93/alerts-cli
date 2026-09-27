@@ -9,6 +9,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/dimkarp93/install-libs/xdgpath"
 )
 
 const dayLayout = "2006-01-02"
@@ -19,6 +21,9 @@ func main() {
 	}
 	if code, ok := completionSpec.Handle(os.Stdout, os.Stderr, os.Args[1:]); ok {
 		os.Exit(code)
+	}
+	if xdgpath.NewPaths(pathEntries()...).HandlePath(os.Stdout, os.Args[1:]) {
+		return
 	}
 	if len(os.Args) < 2 {
 		usage()
@@ -55,6 +60,7 @@ Usage:
   alerts-cli <command> -h     флаги подкоманды
   alerts-cli completion bash|zsh
   alerts-cli install-completions|uninstall-completions [bash|zsh|all]
+  alerts-cli --path           путь к config.json
   alerts-cli --version        версия (-v)
   alerts-cli --origin         репозиторий, из которого собран бинарь
   alerts-cli --buildinfo      полная информация о сборке

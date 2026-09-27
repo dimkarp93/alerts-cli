@@ -24,6 +24,14 @@ func configPath() (string, error) {
 	return xdgpath.WithLegacy(primary, legacy), nil
 }
 
+func pathEntries() []xdgpath.Entry {
+	path, err := configPath()
+	if err != nil {
+		return nil
+	}
+	return []xdgpath.Entry{{Name: "config", Path: path}}
+}
+
 func loadConfig() (config, error) {
 	path, err := configPath()
 	if err != nil {

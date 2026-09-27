@@ -18,6 +18,7 @@ func commonCompletionFlags(formats, groupBys []string) []shellcomplete.Flag {
 var completionSpec = shellcomplete.Spec{
 	Bin: "alerts-cli",
 	Flags: []shellcomplete.Flag{
+		{Name: "--path", Bool: true},
 		{Name: "--version", Bool: true},
 		{Name: "-v", Bool: true},
 		{Name: "--origin", Bool: true},
