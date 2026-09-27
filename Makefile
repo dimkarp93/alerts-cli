@@ -79,7 +79,5 @@ _bump-commit:
 		git checkout -- versions.txt; echo "tag v$$v already exists" >&2; exit 1; \
 	fi; \
 	git commit -q -m "bump $(LEVEL)" -- versions.txt && git tag "v$$v" || exit 1; \
-	rc=0; for r in $$(git remote); do \
-		git push -q "$$r" HEAD --tags || { echo "push to $$r failed" >&2; rc=1; }; \
-	done; \
-	echo "Tagged v$$v"; exit $$rc
+	git push -q origin HEAD --tags; \
+	echo "Tagged v$$v"
