@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/dimkarp93/install-libs/xdgpath"
+	"github.com/dimkarp93/install-libs/pathreport"
 )
 
 const dayLayout = "2006-01-02"
@@ -22,7 +22,7 @@ func main() {
 	if code, ok := completionSpec.Handle(os.Stdout, os.Stderr, os.Args[1:]); ok {
 		os.Exit(code)
 	}
-	if xdgpath.NewPaths(pathEntries()...).HandlePath(os.Stdout, os.Args[1:]) {
+	if pathreport.New(pathEntries()...).HandlePath(os.Stdout, os.Args[1:]) {
 		return
 	}
 	if len(os.Args) < 2 {

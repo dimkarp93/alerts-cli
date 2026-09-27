@@ -6,6 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/dimkarp93/install-libs/pathreport"
 	"github.com/dimkarp93/install-libs/xdgpath"
 )
 
@@ -24,12 +25,12 @@ func configPath() (string, error) {
 	return xdgpath.WithLegacy(primary, legacy), nil
 }
 
-func pathEntries() []xdgpath.Entry {
+func pathEntries() []pathreport.Entry {
 	path, err := configPath()
 	if err != nil {
 		return nil
 	}
-	return []xdgpath.Entry{{Name: "config", Path: path}}
+	return []pathreport.Entry{{Name: "config", Path: path}}
 }
 
 func loadConfig() (config, error) {
